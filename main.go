@@ -2,25 +2,24 @@ package main
 
 import (
 	"fmt"
-	"go-code/linked_list"
+	"go-code/binarytree"
 )
 
 func main() {
-	// 创建测试链表
-	list1 := linked_list.ArrayConvToListNode([]int{1, 4, 5})
-	list2 := linked_list.ArrayConvToListNode([]int{1, 3, 4})
-	list3 := linked_list.ArrayConvToListNode([]int{2, 6})
+	// 创建测试二叉树:
+	//     1
+	//    / \
+	//   2   3
+	root := &binarytree.TreeNode{
+		Val: 1,
+		Left: &binarytree.TreeNode{Val: 2},
+		Right: &binarytree.TreeNode{Val: 3},
+	}
 
-	// 构造链表数组
-	lists := []*linked_list.ListNode{list1, list2, list3}
-
-	// 调用MergeKLists方法
-	result := linked_list.MergeKLists(lists)
+	// 调用中序遍历函数
+	result := binarytree.InorderTraversal(root)
 
 	// 打印结果
-	fmt.Println("Merged list:")
-	for result != nil {
-		fmt.Printf("%d ", result.Val)
-		result = result.Next
-	}
+	fmt.Printf("中序遍历结果: %v\n", result)
+	fmt.Printf("结果长度: %d\n", len(result))
 }
